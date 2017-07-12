@@ -22,28 +22,30 @@ public class MainActivity extends AppCompatActivity {
         new Peticion().execute();
     }
 
-public static class Peticion extends AsyncTask<Void,Void,Void>{
-    @Override
-    protected Void doInBackground(Void... params) {
-        final String url = "http://pokeapi.co/api/v2/pokemon/?limit=151";
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    public static class Peticion extends AsyncTask<Void,Void,Void>{
+        @Override
+        protected Void doInBackground(Void... params) {
+            final String url = "http://pokeapi.co/api/v2/";
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(url)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-        servicePokemon service = retrofit.create(servicePokemon.class);
-        Call<List<PokemonResponse>> response = service.getPokemonGet();
+            servicePokemon service = retrofit.create(servicePokemon.class);
 
-        try{
-            for (PokemonResponse pokemon : response.execute().body()){
-                Log.e( " holi " , String.valueOf(pokemon.getName()));
+            Call<List<PokemonResponse>> response = service.listRepos();
+
+            
+            try{
+                for (PokemonResponse pokemon : response.execute().body()){
+                    Log.e( " holi " , String.valueOf(pokemon.getName()));
+                }
+
+            }catch (IOException e){
+                e.printStackTrace();
             }
-
-        }catch (IOException e){
-            e.printStackTrace();
+            return null;
         }
-        return null;
     }
-}
 
 }

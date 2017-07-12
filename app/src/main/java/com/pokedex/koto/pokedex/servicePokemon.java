@@ -12,6 +12,6 @@ import retrofit2.http.Path;
  */
 
 public interface  servicePokemon {
-        @GET("responseService/1/")
-        Call<List<PokemonResponse>> getPokemonGet();
+    @GET("pokemon/?limit=151")
+    Call<List<PokemonResponse>> listRepos();
 }
