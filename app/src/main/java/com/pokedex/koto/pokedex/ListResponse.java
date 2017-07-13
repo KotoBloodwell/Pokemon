@@ -6,36 +6,12 @@ package com.pokedex.koto.pokedex;
 
 import java.util.List;
 
-import javax.xml.transform.Result;
-
 public class ListResponse {
 
     private int count;
-    private Object previous;
-    private List<Result> results = null;
+    private String previous;
+    private List<PokemonItem> results = null;
     private String next;
-
-    /**
-     * No args constructor for use in serialization
-     *
-     */
-    public ListResponse() {
-    }
-
-    /**
-     *
-     * @param results
-     * @param previous
-     * @param count
-     * @param next
-     */
-    public ListResponse(int count, Object previous, List<Result> results, String next) {
-        super();
-        this.count = count;
-        this.previous = previous;
-        this.results = results;
-        this.next = next;
-    }
 
     public int getCount() {
         return count;
@@ -49,15 +25,15 @@ public class ListResponse {
         return previous;
     }
 
-    public void setPrevious(Object previous) {
+    public void setPrevious(String previous) {
         this.previous = previous;
     }
 
-    public List<Result> getResults() {
+    public List<PokemonItem> getResults() {
         return results;
     }
 
-    public void setResults(List<Result> results) {
+    public void setResults(List<PokemonItem> results) {
         this.results = results;
     }
 

@@ -4,7 +4,7 @@ package com.pokedex.koto.pokedex;
  * Created by KOTO on 11/07/2017.
  */
 
-public class PokemonResponse {
+public class PokemonItem {
 
     private String url;
     private String name;
@@ -13,7 +13,7 @@ public class PokemonResponse {
      * No args constructor for use in serialization
      *
      */
-    public PokemonResponse() {
+    public PokemonItem() {
     }
 
     /**
@@ -21,7 +21,7 @@ public class PokemonResponse {
      * @param name
      * @param url
      */
-    public PokemonResponse(String url, String name) {
+    public PokemonItem(String url, String name) {
         super();
         this.url = url;
         this.name = name;
