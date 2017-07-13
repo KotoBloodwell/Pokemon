@@ -4,7 +4,16 @@ package com.pokedex.koto.pokedex;
  * Created by KOTO on 11/07/2017.
  */
 
-public class responseService {
+public class Pokemon {
+
+    private int id;
+    private String name;
+    private int base_experience;
+    private int height;
+    private boolean is_default;
+    private int order;
+    private int weight;
+
     public int getId() {
         return id;
     }
@@ -60,13 +69,5 @@ public class responseService {
     public void setWeight(int weight) {
         this.weight = weight;
     }
-
-    int id;
-    String name;
-    int base_experience;
-    int height;
-    boolean is_default;
-    int order;
-    int weight;
 
 }
