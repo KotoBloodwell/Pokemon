@@ -8,17 +8,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private String url = "http://pokeapi.co/api/v2/";
     private Retrofit retrofit;
     private PokemonService service;
-
+    Adaptador adapter;
+    List<PokemonItem> pokemonItems;
+    RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        adapter = new Adaptador(pokemonItems);
+        rv = (RecyclerView)findViewById(R.id.RecView);
+        rv.setAdapter(adapter);
+        LinearLayoutManager llm = new LinearLayoutManager(MainActivity.this);
+        rv.setLayoutManager(llm);
+
 
         service = retrofit.create(PokemonService.class);
         service.listPokemon().enqueue(new Callback<ListResponse>() {
@@ -39,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 String loadedMessage = "Loaded " + pokemonItems.size() + " Pokémon";
                 Toast.makeText(MainActivity.this, loadedMessage, Toast.LENGTH_SHORT).show();
 
-                for (PokemonItem pokemon : pokemonItems){
+                adapter.notifyDataSetChanged();
+          /*      for (PokemonItem pokemon : pokemonItems){
                     Log.d( " holi " , String.valueOf(pokemon.getName()));
-                }
+                }*/
+
             }
 
             @Override
