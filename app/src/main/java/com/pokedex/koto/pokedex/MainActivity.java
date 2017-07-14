@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         service.listPokemon().enqueue(new Callback<ListResponse>() {
             @Override
             public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
-                List<PokemonItem> pokemonItems = response.body().getResults();
+                pokemonItems = response.body().getResults();
 
                 String loadedMessage = "Loaded " + pokemonItems.size() + " Pokémon";
                 Toast.makeText(MainActivity.this, loadedMessage, Toast.LENGTH_SHORT).show();
