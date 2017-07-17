@@ -10,19 +10,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private String url = "http://pokeapi.co/api/v2/";
     private Retrofit retrofit;
     private PokemonService service;
-    Adaptador adapter;
+    Adapter adapter;
     List<PokemonItem> pokemonItems;
     RecyclerView rv;
     @Override
@@ -35,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        adapter = new Adaptador(pokemonItems);
+
+        pokemonItems = new ArrayList<>();
+        adapter = new Adapter(pokemonItems);
         rv = (RecyclerView)findViewById(R.id.RecView);
         rv.setAdapter(adapter);
         LinearLayoutManager llm = new LinearLayoutManager(MainActivity.this);
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         service.listPokemon().enqueue(new Callback<ListResponse>() {
             @Override
             public void onResponse(Call<ListResponse> call, Response<ListResponse> response) {
-                pokemonItems = response.body().getResults();
+                pokemonItems.addAll(response.body().getResults());
 
                 String loadedMessage = "Loaded " + pokemonItems.size() + " Pokémon";
                 Toast.makeText(MainActivity.this, loadedMessage, Toast.LENGTH_SHORT).show();
