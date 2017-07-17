@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
@@ -12,13 +11,14 @@ import java.util.List;
  * Created by KOTO on 13/07/2017.
  */
 
-public class Adaptador extends RecyclerView.Adapter<Adaptador.PokemonViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.PokemonViewHolder> {
 
-    public Adaptador(List<PokemonItem> listPokemon) {
+    List<PokemonItem> listPokemon;
+
+    public Adapter(List<PokemonItem> listPokemon) {
         this.listPokemon = listPokemon;
     }
 
-    List<PokemonItem> listPokemon;
     @Override
     public PokemonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pokemon_item,parent,false);
