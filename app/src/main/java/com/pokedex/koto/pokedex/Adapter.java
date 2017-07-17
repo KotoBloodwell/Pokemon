@@ -33,7 +33,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.PokemonViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listPokemon.size();
     }
 
     public static class PokemonViewHolder extends RecyclerView.ViewHolder{
