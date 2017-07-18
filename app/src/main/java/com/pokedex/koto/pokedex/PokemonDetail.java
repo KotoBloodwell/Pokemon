@@ -44,8 +44,15 @@ public class PokemonDetail {
     private String name;
     private long weight;
 
+    public Ability[] getAbilities() {
+        return abilities;
+    }
 
-   // private Ability abilities[];
+    public void setAbilities(Ability[] abilities) {
+        this.abilities = abilities;
+    }
+
+    private Ability abilities[];
   //  private Stat stats[];
    // private Move moves[];
 
