@@ -1,11 +1,15 @@
 package com.pokedex.koto.pokedex;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by KOTO on 13/07/2017.
@@ -13,7 +17,7 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.PokemonViewHolder> {
 
-    List<PokemonItem> listPokemon;
+   static List<PokemonItem> listPokemon;
 
     public Adapter(List<PokemonItem> listPokemon) {
         this.listPokemon = listPokemon;
@@ -36,14 +40,25 @@ public class Adapter extends RecyclerView.Adapter<Adapter.PokemonViewHolder> {
         return listPokemon.size();
     }
 
-    public static class PokemonViewHolder extends RecyclerView.ViewHolder{
+    public static class PokemonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView txtName;
 
         public PokemonViewHolder(View itemView){
             super(itemView);
+            itemView.setOnClickListener(this);
             txtName = (TextView) itemView.findViewById(R.id.txtName);
 
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG, "onClick " + getPosition() + " " + itemView);
+            Intent i = new Intent(itemView.getContext(), PokemonDetailsActivity.class);
+            String url = listPokemon.get(getPosition()).getUrl();
+            i.putExtra("id", url.substring(url.length() -2, url.length() -1) );
+            itemView.getContext().startActivity(i);
         }
     }
 
