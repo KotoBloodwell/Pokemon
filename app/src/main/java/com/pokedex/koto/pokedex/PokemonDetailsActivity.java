@@ -39,8 +39,10 @@ public class PokemonDetailsActivity extends AppCompatActivity {
         service.PokemonDetail(id).enqueue(new Callback<PokemonDetail>() {
             @Override
             public void onResponse(Call<PokemonDetail> call, Response<PokemonDetail> response) {
+                String name = response.body().getName();
+               txtName.setText(Character.toUpperCase(name.charAt(0)) + name.substring(1,name.length()));
 
-               txtName.setText(response.body().getName());
+
                 txtWeight.setText(Long.toString(response.body().getWeight()));
 
             }
