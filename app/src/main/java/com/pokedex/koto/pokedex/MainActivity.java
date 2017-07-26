@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private String url = "http://pokeapi.co/api/v2/";
     private Retrofit retrofit;
     private PokemonService service;
+
     Adapter adapter;
     List<PokemonItem> pokemonItems;
     RecyclerView rv;
